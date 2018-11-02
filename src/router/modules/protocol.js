@@ -1,28 +1,21 @@
 let protocolRoute = [
   {
     path: '/protocol/register',
-    name: 'protocol_register',//客户协议书
+    name: 'registerProtocol',// 协议
     meta: {
-      title: '客户协议书'
+      title: '注册协议',
+      // requireAuth: true
     },
-    component: resolve => require(['@/views/protocol/register'], resolve)
+    component: resolve => require(['@/views/protocol/registerProtocol.vue'], resolve)
   },
   {
-    path: '/download',
-    name: 'download',//我要下载
+    path: '/protocol/borrow',
+    name: 'borrowProtocol',// 协议
     meta: {
-      title: '我要下载'
+      title: '借款协议',
+      // requireAuth: true
     },
-    component: resolve => require(['@/views/protocol/download'], resolve)
+    component: resolve => require(['@/views/protocol/borrowProtocol.vue'], resolve)
   },
-  {
-    path: '/protocol/riskDisclosure',
-    name: 'protocol_riskDisclosure',//《风险揭示书》
-    meta: {
-      title: '风险揭示书',
-      requireAuth: true
-    },
-    component: resolve => require(['@/views/protocol/riskDisclosure'], resolve)
-  }
 ]
 export default protocolRoute
