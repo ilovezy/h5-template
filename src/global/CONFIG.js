@@ -12,7 +12,7 @@ window.CONFIG = {
     'development': '//118.25.23.224:9001/',   // 王延吉  124.160.42.126:6510
   },
 
-  openVconsole: true,
+  openVconsole: false,
 
   serviceParam: {
     clientName: 'web',
