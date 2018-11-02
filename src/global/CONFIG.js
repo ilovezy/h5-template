@@ -6,16 +6,16 @@ window.CONFIG = {
     'production': '//118.25.23.224:9001/',  //上线构建环境  npm run buildproduction
 
     //热更新开发构建环境 npm run dev
-    // 'development': '//10.60.10.165:9001/', // dev环境
+    'development': '//10.60.20.165:9011/api', // dev环境
     // 'development': '//10.60.10.20:9001/',   // 肥虫虫
     // 'development': '//10.60.30.69:9001/',   // 王延吉
-    'development': '//118.25.23.224:9001/',   // 王延吉  124.160.42.126:6510
+    // 'development': '//118.25.23.224:9001/',   // 王延吉  124.160.42.126:6510
   },
 
-  openVconsole: false,
+  openVconsole: true,
 
   serviceParam: {
-    clientName: 'web',
+    clientName: 'app-h6',
     clientSecret: '1qaz2wsx',
     Version: '1.0'
   }

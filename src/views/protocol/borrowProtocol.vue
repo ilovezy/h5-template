@@ -1,22 +1,19 @@
 <template>
   <layout :showNavbar="isNavbar">
-    <h1>bidId: {{bidId}}</h1>
-    <h1>token: {{token}}</h1>
-
     <div class="protocol-container">
       <div class='protocol-wrap'>
         <div class='pro-sub'
-             style='margin-bottom: 20px;'>编号：{{'TODO'}}
+             style='margin-bottom: 20px;'>编号：{{bidId}}
         </div>
         <div class='pro-main'
              style='margin-bottom: 20px;'>
-          甲方 （借款人）：{{'TODO'}} <br>
-          身份证号码：{{'TODO'}} <br>
+          甲方 （借款人）：{{detail.borrowerName || ''}} <br>
+          身份证号码：{{detail.borrowerIdentity || ''}} <br>
         </div>
         <div class='pro-main'
              style='margin-bottom: 20px;'>
-          乙方 （出借人）：{{'TODO'}} <br>
-          身份证号码：{{'TODO'}} <br>
+          乙方 （出借人）：{{detail.lenderName || ''}} <br>
+          身份证号码：{{detail.lenderIdentity || ''}} <br>
         </div>
         <div class='pro-main'
              style='margin-bottom: 20px;'>
@@ -32,25 +29,25 @@
           甲方同意通过丙方平台向乙方借款明细如下，乙方同意通过丙方平台向甲方发放下列借款： <br>
           <table class='table-simple'>
             <tr>
-              <td>借款本金：人民币 元整（大写： 元整）</td>
+              <td>借款本金：人民币{{ detail.bidAmount || '' }}元（大写： {{detail.bidAmountCn || ''}}）</td>
             </tr>
             <tr>
-              <td>借款年化利率（%）：</td>
+              <td>借款年化利率（%）：{{detail.bidRate || ''}}</td>
             </tr>
             <tr>
-              <td>借款起始日：</td>
+              <td>借款起始日：{{detail.startTime || ''}}</td>
             </tr>
             <tr>
-              <td>借款期限：</td>
+              <td>借款期限：{{detail.bidPeriod || ''}} {{bidPeriodTypeMap[detail.bidPeriodType] || ''}}</td>
             </tr>
             <tr>
-              <td>借款到期日：</td>
+              <td>借款到期日：{{detail.endTime}}</td>
             </tr>
             <tr>
               <td>还款方式：一次性还本付息</td>
             </tr>
             <tr>
-              <td>借款用途：</td>
+              <td>借款用途：{{bidUseTypeMap[detail.bidUseType] || ''}}</td>
             </tr>
           </table>
 
@@ -80,7 +77,6 @@
           <span style='color: black;font-weight: bold;'><span style='text-decoration: underline;'>{{'TODO'}}</span>％</span>支付逾期费用。
           <br>3. 甲方发生任何一期逾期超过3日，甲方个人信息将可能进入信用征信系统，由此产生的后果由甲方承担。
         </div>
-
 
         <div class='pro-title'>第四条 提前还款</div>
         <div class='pro-sub'>
@@ -231,19 +227,19 @@
         </div>
 
         <div class='pro-main'
-             style='margin-bottom: 20px;'>
-          甲方 （借款人）：{{'TODO'}} <br>
-          日期：{{'TODO'}} <br>
+             style='margin-bottom: 20px; margin-top: 20px;'>
+          甲方 （借款人）：{{detail.borrowerName || ''}} <br>
+          日期：{{detail.contactTime || ''}} <br>
         </div>
         <div class='pro-main'
              style='margin-bottom: 20px;'>
-          乙方 （出借人）：{{'TODO'}} <br>
-          日期：{{'TODO'}} <br>
+          乙方 （出借人）：{{detail.lenderName || ''}} <br>
+          日期：{{detail.contactTime || ''}} <br>
         </div>
         <div class='pro-main'
              style='margin-bottom: 20px;'>
           丙方 （居间方）：浙江格爱网络科技有限公司<br>
-          日期：{{'TODO'}} <br>
+          日期：{{detail.contactTime || ''}} <br>
         </div>
 
       </div>
@@ -256,16 +252,48 @@
       return {
         isNavbar: true,
         bidId: '',
-        token: ''
+        token: '',
+        preview: '',
+
+        detail: {},
+        bidPeriodTypeMap: {
+          day: '天',
+          month: '月'
+        },
+        bidUseTypeMap: {
+          consume: '消费',
+          medical: '医疗',
+          beautify_feature: '美容',
+          capital_turn: '短期周转',
+          education: '教育',
+          other: '其他',
+        }
       }
     },
     created() {
       console.log(this.$route.query)
       let query = this.$route.query || {}
-      this.bidId = query.bidId
-      this.token = query.token
+
+      if (query.preview != 'yes') {
+        this.bidId = query.bidId
+        this.token = query.token
+        USER.setToken(query.token)
+        const self = this
+
+        setTimeout(() => {
+          self.getDetail()
+        }, 300)
+      }
     },
-    methods: {}
+    methods: {
+      getDetail() {
+        this.axios.post('/auth/bid/contact', {
+          bidId: this.bidId
+        }).then(res => {
+          this.detail = res
+        })
+      }
+    }
   }
 </script>
 <style lang="less">

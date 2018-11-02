@@ -25,16 +25,16 @@ let instance = axios.create({
 instance.interceptors.request.use(config => {
   let clientName = CONFIG.serviceParam.clientName
   let clientSecret = CONFIG.serviceParam.clientSecret
-
-  if (config.data) {
-    config.data.clientName = clientName
-    config.data.clientSecret = clientSecret
-  } else {
-    config.data = {
-      clientName,
-      clientSecret
-    }
-  }
+  //
+  // if (config.data) {
+  //   config.data.clientName = clientName
+  //   config.data.clientSecret = clientSecret
+  // } else {
+  //   config.data = {
+  //     clientName,
+  //     clientSecret
+  //   }
+  // }
 
   let token = USER.getToken()
   if (token) {
@@ -64,13 +64,13 @@ instance.interceptors.response.use(res => {
       Toast({mes: '404错误，后台没找到', timeout: ToastTimeout})
     } else {
       if (data.error == 'ERROR_ACCESS_NEED_AUTH') {
-        // TODO 调到登录页面去
-        Toast({mes: '请登录 fuck TODO', timeout: ToastTimeout})
-        USER.logout()
-        // setTimeout(() => {
-        //   location.href = '/login';
-        // }, 2000)
-        return Promise.reject()
+        // // TODO 调到登录页面去
+        // Toast({mes: '请登录 fuck TODO', timeout: ToastTimeout})
+        // USER.logout()
+        // // setTimeout(() => {
+        // //   location.href = '/login';
+        // // }, 2000)
+        // return Promise.reject()
       } else {
         Toast({mes: data.errorDescription, timeout: ToastTimeout})
         return Promise.reject(data);
@@ -78,10 +78,10 @@ instance.interceptors.response.use(res => {
     }
   } else {
     Toast({mes: '登录信息过期，请登录', timeout: ToastTimeout})
-    USER.logout()
-    setTimeout(() => {
-      location.href = '/#/login'
-    }, 2000)
+    // USER.logout()
+    // setTimeout(() => {
+    //   location.href = '/#/login'
+    // }, 2000)
     return Promise.reject(err)
   }
 })
