@@ -74,7 +74,7 @@
         <div class='pro-sub'>
           1. 甲方未能在任何一个还款日24:00前将应还金额足额支付至乙方账户的，或未能通过经由丙方认可的其他方式进行还款操作的，视作逾期还款。
           <br>2. 甲方逾期还款的，每逾期一日按照应还借款金额的
-          <span style='color: black;font-weight: bold;'><span style='text-decoration: underline;'>{{'TODO'}}</span>％</span>支付逾期费用。
+          <span style='color: black;font-weight: bold;'><span style='text-decoration: underline;'>{{detail.overdueRate || ''}}</span>％</span>支付逾期费用。
           <br>3. 甲方发生任何一期逾期超过3日，甲方个人信息将可能进入信用征信系统，由此产生的后果由甲方承担。
         </div>
 
