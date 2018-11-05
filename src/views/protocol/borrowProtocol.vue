@@ -7,13 +7,13 @@
         </div>
         <div class='pro-main'
              style='margin-bottom: 20px;'>
-          甲方 （借款人）：{{detail.borrowerName || ''}} <br>
-          身份证号码：{{detail.borrowerIdentity || ''}} <br>
+          甲方 （借款人）：{{detail.borrowerName}} <br>
+          身份证号码：{{detail.borrowerIdentity}} <br>
         </div>
         <div class='pro-main'
              style='margin-bottom: 20px;'>
-          乙方 （出借人）：{{detail.lenderName || ''}} <br>
-          身份证号码：{{detail.lenderIdentity || ''}} <br>
+          乙方 （出借人）：{{detail.lenderName}} <br>
+          身份证号码：{{detail.lenderIdentity}} <br>
         </div>
         <div class='pro-main'
              style='margin-bottom: 20px;'>
@@ -29,16 +29,16 @@
           甲方同意通过丙方平台向乙方借款明细如下，乙方同意通过丙方平台向甲方发放下列借款： <br>
           <table class='table-simple'>
             <tr>
-              <td>借款本金：人民币{{ detail.bidAmount || '' }}元（大写： {{detail.bidAmountCn || ''}}）</td>
+              <td>借款本金：人民币{{ detail.bidAmount }}元（大写： {{detail.bidAmountCn}}）</td>
             </tr>
             <tr>
-              <td>借款年化利率（%）：{{detail.bidRate || ''}}</td>
+              <td>借款年化利率（%）：{{detail.bidRate}}</td>
             </tr>
             <tr>
-              <td>借款起始日：{{detail.startTime || ''}}</td>
+              <td>借款起始日：{{detail.startTime}}</td>
             </tr>
             <tr>
-              <td>借款期限：{{detail.bidPeriod || ''}} {{bidPeriodTypeMap[detail.bidPeriodType] || ''}}</td>
+              <td>借款期限：{{detail.bidPeriod}} {{bidPeriodTypeMap[detail.bidPeriodType]}}</td>
             </tr>
             <tr>
               <td>借款到期日：{{detail.endTime}}</td>
@@ -47,7 +47,7 @@
               <td>还款方式：一次性还本付息</td>
             </tr>
             <tr>
-              <td>借款用途：{{bidUseTypeMap[detail.bidUseType] || ''}}</td>
+              <td>借款用途：{{bidUseTypeMap[detail.bidUseType]}}</td>
             </tr>
           </table>
 
@@ -74,7 +74,7 @@
         <div class='pro-sub'>
           1. 甲方未能在任何一个还款日24:00前将应还金额足额支付至乙方账户的，或未能通过经由丙方认可的其他方式进行还款操作的，视作逾期还款。
           <br>2. 甲方逾期还款的，每逾期一日按照应还借款金额的
-          <span style='color: black;font-weight: bold;'><span style='text-decoration: underline;'>{{detail.overdueRate || ''}}</span>％</span>支付逾期费用。
+          <span style='color: black;font-weight: bold;'><span style='text-decoration: underline;'>{{detail.bidOverdueRate}}</span>％</span>支付逾期费用。
           <br>3. 甲方发生任何一期逾期超过3日，甲方个人信息将可能进入信用征信系统，由此产生的后果由甲方承担。
         </div>
 
@@ -228,18 +228,18 @@
 
         <div class='pro-main'
              style='margin-bottom: 20px; margin-top: 20px;'>
-          甲方 （借款人）：{{detail.borrowerName || ''}} <br>
-          日期：{{detail.contactTime || ''}} <br>
+          甲方 （借款人）：{{detail.borrowerName}} <br>
+          日期：{{detail.contactTime}} <br>
         </div>
         <div class='pro-main'
              style='margin-bottom: 20px;'>
-          乙方 （出借人）：{{detail.lenderName || ''}} <br>
-          日期：{{detail.contactTime || ''}} <br>
+          乙方 （出借人）：{{detail.lenderName}} <br>
+          日期：{{detail.contactTime}} <br>
         </div>
         <div class='pro-main'
              style='margin-bottom: 20px;'>
           丙方 （居间方）：浙江格爱网络科技有限公司<br>
-          日期：{{detail.contactTime || ''}} <br>
+          日期：{{detail.contactTime}} <br>
         </div>
 
       </div>
@@ -291,6 +291,7 @@
           bidId: this.bidId
         }).then(res => {
           this.detail = res
+          console.log(res)
         })
       }
     }
