@@ -12,7 +12,7 @@
           <slot></slot>
         </div>
       </div>
-      <img src='/static/images/common/modal-close.png'
+      <img src='../img/modal-close.png'
            class='modal-close'
            @click='close'
            alt=''>
