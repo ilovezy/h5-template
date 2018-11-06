@@ -61,8 +61,8 @@ module.exports = {
   },
   buildproduction: {
     env: require('./production.env'),
-    index: path.resolve(__dirname, '../dist/index.html'),
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    index: path.resolve(__dirname, '../mobile/index.html'),
+    assetsRoot: path.resolve(__dirname, '../mobile'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     productionSourceMap: false,
