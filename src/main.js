@@ -16,6 +16,8 @@ import axios from './global/fetch'
 import _ from 'underscore'
 import moment from 'moment'
 import $ from 'jquery'
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
 
 window.USER = USER
 window._ = _
@@ -23,7 +25,10 @@ window.moment = moment
 window.$ = $
 
 Vue.use(UI)
+Vue.use(MintUI)
+
 Vue.prototype.axios = axios
+window.AXIOS = axios
 
 Vue.config.productionTip = false
 Vue.config.devtools = false
