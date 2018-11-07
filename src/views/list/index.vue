@@ -2,14 +2,8 @@
   <layout :showNavbar="isNavbar" :showTabbar='true'
           title='列表'>
     <mu-carousel style='height: 200px;position: fixed;z-index: 10;'>
-      <mu-carousel-item>
-        <img src="../img/carousel1.dc6ba9d4.jpg">
-      </mu-carousel-item>
-      <mu-carousel-item>
-        <img src="../img/carousel1.dc6ba9d4.jpg">
-      </mu-carousel-item>
-      <mu-carousel-item>
-        <img src="../img/carousel1.dc6ba9d4.jpg">
+      <mu-carousel-item v-for='item,index in bannerList'>
+        <img :src="item">
       </mu-carousel-item>
     </mu-carousel>
 
@@ -47,13 +41,51 @@
         num: 20,
         refreshing: false,
         loading: false,
-        text: 'List'
+        text: 'List',
+
+
+        list: [],
+        total: 0,
+        listLoading: false,
+        listQuery: {
+          page: 0,
+          size: 10,
+          trueName: '',
+          mobile: '15968730003', // TODO REMOVE
+          crTimeStart: '',
+          crTimeEnd: '',
+          enterStatus: ''
+        },
+
+        bannerList: []
       }
     },
     created() {
-      // this.getDetail()
+      this.getBanner()
+      this.getList()
     },
     methods: {
+      getBanner(){
+        const self = this
+        self.listLoading = true
+        AXIOS.post('/auth/cmsBanner/index', self.listQuery).then(res => {
+          let list = res.content || []
+          if(isLongArr(list)){
+            self.bannerList = _.pluck(list, 'image')
+          }
+        })
+      },
+      getList() {
+        const self = this
+        self.listLoading = true
+        AXIOS.post('/auth/userInfo/userInfoIndex', self.listQuery).then(res => {
+          self.list = res.content || []
+          self.total = res.totalElements || 0
+          self.listLoading = false
+        }).catch((res) => {
+          self.listLoading = false
+        })
+      },
       refresh () {
         this.refreshing = true;
         this.$refs.container.scrollTop = 0;

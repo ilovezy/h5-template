@@ -6,7 +6,7 @@ window.CONFIG = {
     'production': '//10.60.20.46:9011/api',  //上线构建环境  build:prod
 
     //热更新开发构建环境 npm run dev
-    'development': '//10.60.20.46:9011/api', // dev环境
+    'development': '//10.60.10.20:9011/backend/', // dev环境
     // 'development': '//10.60.10.20:9001/',   // 肥虫虫
     // 'development': '//10.60.30.69:9001/',   // 王延吉
     // 'development': '//118.25.23.224:9001/',   // 王延吉  124.160.42.126:6510

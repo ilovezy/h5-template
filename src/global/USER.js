@@ -1,26 +1,26 @@
-import config from './CONFIG'
+import './CONFIG'
 
 let USER = {
   setToken(str) {
-    localStorage.setItem(config.projectName + '-token', str)
+    localStorage.setItem(CONFIG.projectName + '-token', str)
   },
   getToken() {
-    return localStorage.getItem(config.projectName + '-token')
+    return localStorage.getItem(CONFIG.projectName + '-token')
   },
   isLogin() {
-    return !!localStorage.getItem(config.projectName + '-token')
+    return !!localStorage.getItem(CONFIG.projectName + '-token')
   },
   setLoginName(str) {
-    localStorage.setItem(config.projectName + '-loginName', str)
+    localStorage.setItem(CONFIG.projectName + '-loginName', str)
   },
 
   getLoginName() {
-    return localStorage.getItem(config.projectName + '-loginName')
+    return localStorage.getItem(CONFIG.projectName + '-loginName')
   },
 
   logout() {
-    localStorage.removeItem(config.projectName + '-token')
-    localStorage.removeItem(config.projectName + '-loginName')
+    localStorage.removeItem(CONFIG.projectName + '-token')
+    localStorage.removeItem(CONFIG.projectName + '-loginName')
   }
 }
 

@@ -1,7 +1,10 @@
 <template>
-
   <mu-appbar style="width: 100%;" color="primary">
-    <mu-button icon slot="left" v-if='!noBack' @click='goBack'>
+
+    <mu-button icon slot="left" v-if='openSideBar' @click='showSideBar'>
+      <mu-icon value=":iconfont icon-user-copy" size='26'></mu-icon>
+    </mu-button>
+    <mu-button icon slot="left" v-if='!noBack && !openSideBar' @click='goBack'>
       <mu-icon value=":iconfont icon-back"></mu-icon>
     </mu-button>
     {{title}}
@@ -19,6 +22,10 @@
         type: Boolean,
         default: false
       },
+      openSideBar: {
+        type: Boolean,
+        default: false
+      },
       backLink: String,
     },
     methods: {
@@ -29,6 +36,10 @@
           this.$router.back()
         }
       },
+
+      showSideBar(){
+        this.$emit('showSideBar')
+      }
     }
   }
 </script>

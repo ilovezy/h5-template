@@ -55,9 +55,11 @@ instance.interceptors.request.use(config => {
   //   }
   // }
 
-  let token = USER.getToken()
+  const token = USER.getToken()
   if (token) {
-    config.headers.Authorization = 'Bearer ' + token;
+    config.headers.Authorization = 'Bearer ' + token
+  } else {
+    config.headers.Authorization = 'Basic ' + btoa('backend-platform:backend-platform')
   }
   return config
 })
@@ -74,21 +76,22 @@ instance.interceptors.response.use(res => {
     return Promise.reject(data);
   }
 }, err => {
-  // debugger
   NProgress.done();
   if (err.response) {
     let response = err.response || {}
     let data = response.data || {}
-    if (data.status == 404) {Toast.message('404错误，后台没找到');
+    if (data.status == 404) {
+      Toast.message('404错误，后台没找到');
+      return Promise.reject(data);
     } else {
       if (data.error == 'ERROR_ACCESS_NEED_AUTH') {
         // // TODO 调到登录页面去
         Toast.message('请登录');
-        // USER.logout()
-        // // setTimeout(() => {
-        // //   location.href = '/login';
-        // // }, 2000)
-        // return Promise.reject()
+        USER.logout()
+        setTimeout(() => {
+          location.href = '/login';
+        }, 2000)
+        return Promise.reject()
       } else {
         Toast.message(data.errorDescription)
         return Promise.reject(data);
@@ -104,23 +107,36 @@ instance.interceptors.response.use(res => {
   }
 })
 
-const postRequest = (url, params) => {
+const postRequest = (url, params = {}) => {
   if (url) {
-    return instance({
-      method: 'post',
-      url,
-      data: params,
-      transformRequest: [function (data) {
-        let ret = '';
-        for (let item in data) {
-          ret += encodeURIComponent(item) + '=' + encodeURIComponent(data[item]) + '&';
+    let setting = {}
+    if (params.postType == 'old') {
+      setting = {
+        method: 'post',
+        url,
+        data: params,
+        transformRequest: [function(data) {
+          let ret = ''
+          for (const item in data) {
+            ret += encodeURIComponent(item) + '=' + encodeURIComponent(data[item]) + '&'
+          }
+          return ret
+        }],
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         }
-        return ret;
-      }],
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
       }
-    })
+    } else {
+      setting = {
+        method: 'post',
+        url,
+        data: params,
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8'
+        }
+      }
+    }
+    return instance(setting)
   } else {
     Toast.message('请求地址为空')
   }
