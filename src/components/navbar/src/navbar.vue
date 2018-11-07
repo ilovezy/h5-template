@@ -1,8 +1,8 @@
 <template>
 
   <mu-appbar style="width: 100%;" color="primary">
-    <mu-button icon slot="left">
-      <mu-icon value=":iconfont icon-back" v-if='!noBack' @click='goBack'></mu-icon>
+    <mu-button icon slot="left" v-if='!noBack' @click='goBack'>
+      <mu-icon value=":iconfont icon-back"></mu-icon>
     </mu-button>
     {{title}}
     <mu-button flat slot="right"></mu-button>

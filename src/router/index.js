@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import account from './modules/account'
 import list from './modules/list'
 import gridList from './modules/gridList'
+import user from './modules/user'
 import protocolRoute from './modules/protocol'
 
 Vue.use(Router)
@@ -33,5 +34,6 @@ export default new Router({
     ...account,
     ...list,
     ...gridList,
+    ...user,
   ]
 })

@@ -12,16 +12,16 @@ import NProgress from 'muse-ui-progress';
 Toast.config({
   position: 'top-start',               // 弹出的位置
   time: 2000,                       // 显示的时长
-  closeIcon: 'close',               // 关闭的图标
-  close: true,                      // 是否显示关闭按钮
+  // closeIcon: 'close',               // 关闭的图标
+  close: false,                      // 是否显示关闭按钮
 })
 NProgress.config( {
   zIndex: 2000,          // progress z-index
   top: 0,                // position fixed top
-  speed: 10,            // progress speed
-  color: 'primary',      // color
+  speed: 300,            // progress speed
+  color: 'warning',      // color
   size: 3,               // progress size
-  className: 'position-fixed'          // progress custom class
+  className: 'cc-n-progress'          // progress custom class
 })
 
 import VConsole from 'vconsole' //import vconsole
@@ -63,7 +63,7 @@ instance.interceptors.request.use(config => {
 })
 
 instance.interceptors.response.use(res => {
-  // NProgress.done();
+  NProgress.done();
   let data = res.data || {}
   if (data.success) {
     return data.result || {}
@@ -75,7 +75,7 @@ instance.interceptors.response.use(res => {
   }
 }, err => {
   // debugger
-  // NProgress.done();
+  NProgress.done();
   if (err.response) {
     let response = err.response || {}
     let data = response.data || {}

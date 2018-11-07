@@ -1,8 +1,9 @@
 <template>
   <layout :showNavbar="isNavbar"
           :showTabbar='true'
+          :showLoading='pageLoading'
           title='首页'>
-    <mu-container ref="container"
+    <div ref="container"
                   class="demo-loadmore-content">
 
       <mu-load-more @refresh="refresh"
@@ -82,7 +83,7 @@
           </mu-col>
         </mu-row>
       </mu-load-more>
-    </mu-container>
+    </div>
   </layout>
 </template>
 <script>
@@ -96,10 +97,11 @@
 
         refreshing: false,
         loading: false,
+        pageLoading: false
       }
     },
     created() {
-      // this.getDetail()
+      this.getDetail()
     },
     methods: {
       refresh() {
@@ -131,11 +133,14 @@
         this.openSimple = false;
       },
       getDetail() {
+        this.pageLoading = true
         AXIOS.post('/auth/bid/contact', {
           bidId: this.bidId
         }).then(res => {
           this.detail = res
           console.log(res)
+        }).catch(res =>{
+          this.pageLoading = false
         })
       }
     }

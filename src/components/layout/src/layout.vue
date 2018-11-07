@@ -6,9 +6,14 @@
     </slot>
     <section class="scrollview"
              ref="scrollView">
-      <slot></slot>
+      <div v-if='showLoading' style='text-align: center;padding: 100px;'>
+        <mu-circular-progress class="demo-circular-progress"
+                              :size="36"></mu-circular-progress>
+      </div>
+      <slot v-else></slot>
     </section>
-    <mu-container v-if='showTabbar' style='border-top: 1px solid #eaeaea;'>
+    <div v-if='showTabbar'
+                  style='border-top: 1px solid #eaeaea;'>
       <mu-bottom-nav value=''>
         <mu-bottom-nav-item
           exact-active-class='mu-bottom-item-active'
@@ -39,7 +44,7 @@
           value='gridList'
           icon="menu"></mu-bottom-nav-item>
       </mu-bottom-nav>
-    </mu-container>
+    </div>
   </section>
 </template>
 <script type="text/babel">
@@ -59,6 +64,10 @@
         default: true
       },
       showTabbar: {
+        type: Boolean,
+        default: false
+      },
+      showLoading: {
         type: Boolean,
         default: false
       },
