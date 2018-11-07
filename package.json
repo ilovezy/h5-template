@@ -7,9 +7,9 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "buildlocal": "node build/buildlocal.js",
-    "buildtest": "node build/buildtest.js",
+    "build:test": "node build/buildtest.js",
     "builduat": "node build/builduat.js",
-    "buildproduction": "node build/buildproduction.js"
+    "build:prod": "node build/buildproduction.js"
   },
   "dependencies": {
     "alloyfinger": "^0.1.8",

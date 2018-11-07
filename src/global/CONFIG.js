@@ -2,8 +2,8 @@ window.CONFIG = {
   serviceUrl: {
     'localhost': '//10.17.13.231:10010/',   //本地开发构建环境 npm run buildlocal
     'uat': '//10.17.13.231:8088/',   //uat构建环境 npm run builduat
-    'test': '//10.17.13.231:10010/',   //测试构建环境 npm run buildtest
-    'production': '//10.60.20.46:9011/api',  //上线构建环境  npm run buildproduction
+    'test': '//10.17.13.231:10010/',   //测试构建环境 npm run build:test
+    'production': '//10.60.20.46:9011/api',  //上线构建环境  build:prod
 
     //热更新开发构建环境 npm run dev
     'development': '//10.60.20.46:9011/api', // dev环境
