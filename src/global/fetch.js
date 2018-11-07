@@ -10,7 +10,7 @@ import 'muse-ui-progress/dist/muse-ui-progress.css';
 import NProgress from 'muse-ui-progress';
 
 Toast.config({
-  position: 'top',               // 弹出的位置
+  position: 'top-start',               // 弹出的位置
   time: 2000,                       // 显示的时长
   closeIcon: 'close',               // 关闭的图标
   close: true,                      // 是否显示关闭按钮

@@ -10,7 +10,7 @@
 
     <mu-container >
       <mu-bottom-nav>
-        <mu-bottom-nav-item to='home' title="Recents" icon="restore"></mu-bottom-nav-item>
+        <mu-bottom-nav-item to='/' title="Recents" icon="restore"></mu-bottom-nav-item>
         <mu-bottom-nav-item to='list' title="Favorites" icon="favorite"></mu-bottom-nav-item>
         <mu-bottom-nav-item to='account' title="Nearby" icon="location_on"></mu-bottom-nav-item>
       </mu-bottom-nav>

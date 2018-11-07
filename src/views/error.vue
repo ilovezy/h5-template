@@ -4,13 +4,15 @@
       <img src="./img/not_error.png"
            alt="404 error~"
            class="not_icon">
-      <ibutton type="hollow"
-               @click.native="goHome()"
-               class="btn-error">返回首页
-      </ibutton>
+
+      <mu-button color="primary"
+                 @click.native="goHome()">返回首页
+      </mu-button>
     </div>
     <div class="warm-prompt">
-      <p class="text-center">客服热线：<a href="tel:4000998799"> 400-099-8799</a></p>
+      <p class="text-center">客服热线：
+        <a href="tel:4000998799">400-099-8799</a>
+      </p>
     </div>
   </layout>
 </template>
