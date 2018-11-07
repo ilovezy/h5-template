@@ -18,5 +18,7 @@ window.CONFIG = {
     clientName: 'app-h6',
     clientSecret: '1qaz2wsx',
     Version: '1.0'
-  }
+  },
+
+  projectName: 'iou-h5' // 用于token唯一
 }

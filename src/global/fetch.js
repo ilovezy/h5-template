@@ -2,7 +2,6 @@
  * Created by ymjdev on 2017/9/20.
  */
 import axios from 'axios';
-import {Toast, Loading} from '../components/dialog/index';
 import './CONFIG'
 import USER from '../global/USER'
 
@@ -44,24 +43,24 @@ instance.interceptors.request.use(config => {
 })
 
 instance.interceptors.response.use(res => {
-  Loading.close();
+  // Loading.close();
   let data = res.data || {}
   if (data.success) {
     return data.result || {}
   } else {
     if (data.errorDescription) {
-      Toast({mes: data.errorDescription, timeout: ToastTimeout})
+      // Toast({mes: data.errorDescription, timeout: ToastTimeout})
     }
     return Promise.reject(data);
   }
 }, err => {
   // debugger
-  Loading.close()
+  // Loading.close()
   if (err.response) {
     let response = err.response || {}
     let data = response.data || {}
     if (data.status == 404) {
-      Toast({mes: '404错误，后台没找到', timeout: ToastTimeout})
+      // Toast({mes: '404错误，后台没找到', timeout: ToastTimeout})
     } else {
       if (data.error == 'ERROR_ACCESS_NEED_AUTH') {
         // // TODO 调到登录页面去
@@ -72,12 +71,12 @@ instance.interceptors.response.use(res => {
         // // }, 2000)
         // return Promise.reject()
       } else {
-        Toast({mes: data.errorDescription, timeout: ToastTimeout})
+        // Toast({mes: data.errorDescription, timeout: ToastTimeout})
         return Promise.reject(data);
       }
     }
   } else {
-    Toast({mes: '登录信息过期，请登录', timeout: ToastTimeout})
+    // Toast({mes: '登录信息过期，请登录', timeout: ToastTimeout})
     // USER.logout()
     // setTimeout(() => {
     //   location.href = '/#/login'
@@ -88,7 +87,7 @@ instance.interceptors.response.use(res => {
 
 const postRequest = (url, params) => {
   if (!url) {
-    Toast({mes: '请求地址为空', timeout: ToastTimeout})
+    // Toast({mes: '请求地址为空', timeout: ToastTimeout})
   } else {
     return instance({
       method: 'post',

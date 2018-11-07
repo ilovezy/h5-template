@@ -1,24 +1,26 @@
+import config from './CONFIG'
+
 let USER = {
   setToken(str) {
-    localStorage.setItem('iou-h5-token', str)
+    localStorage.setItem(config.projectName + '-token', str)
   },
   getToken() {
-    return localStorage.getItem('iou-h5-token')
+    return localStorage.getItem(config.projectName + '-token')
   },
   isLogin() {
-    return !!localStorage.getItem('iou-h5-token')
+    return !!localStorage.getItem(config.projectName + '-token')
   },
   setLoginName(str) {
-    localStorage.setItem('iou-h5-loginName', str)
+    localStorage.setItem(config.projectName + '-loginName', str)
   },
 
   getLoginName() {
-    return localStorage.getItem('iou-h5-loginName')
+    return localStorage.getItem(config.projectName + '-loginName')
   },
 
   logout() {
-    localStorage.removeItem('iou-h5-token')
-    localStorage.removeItem('iou-h5-loginName')
+    localStorage.removeItem(config.projectName + '-token')
+    localStorage.removeItem(config.projectName + '-loginName')
   }
 }
 
