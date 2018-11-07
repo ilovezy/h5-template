@@ -200,44 +200,6 @@
   width: 100%;
 }
 
-.progress {
-  flex: 1;
-  position: relative;
-  width: 100%;
-
-  .progressbar {
-    display: block;
-    padding: 0;
-    margin: 0;
-    height: 0.1rem;
-    background: #E7F1FD;
-    position: relative;
-    i {
-      position: absolute;
-      left: 0;
-      top: 0;
-      margin: 0;
-      padding: 0;
-      width: 0;
-      height: 0.1rem;
-      background-color: #d82d2d;
-      transition: all 1s linear;
-    }
-  }
-
-  .info {
-    .flex-between();
-
-    margin-top: 0.2rem;
-    margin-bottom: 0.44rem;
-    .notice {
-      font-size: 0.24rem;
-      color: @color-sub;
-    }
-  }
-
-}
-
 .simple-panel-with-title {
   .title {
     padding: 0.2rem 0.4rem;
@@ -273,4 +235,9 @@
       color: @color-sub;
     }
   }
+}
+
+
+.position-fixed {
+  position: fixed!important;
 }

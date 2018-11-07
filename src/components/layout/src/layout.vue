@@ -1,18 +1,20 @@
 <template>
   <section class="flexview">
-    <div class="appdown" v-if="appdown" style="z-index: 2000">
-      <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.cflc.hp">点击下载长富理财存管APP，玩转积分乐趣</a>
-      <i class="icon-error-outline" @click="closeAppdown"></i>
-    </div>
     <slot name="navbar" v-if="showNavbar">
-      <navbar :title="title" v-if="!!title"/>
-    </slot>
-    <slot name="top">
+      <navbar :title="title"/>
     </slot>
     <section class="scrollview" ref="scrollView">
       <slot></slot>
     </section>
     <slot name="bottom"></slot>
+
+    <mu-container >
+      <mu-bottom-nav>
+        <mu-bottom-nav-item to='home' title="Recents" icon="restore"></mu-bottom-nav-item>
+        <mu-bottom-nav-item to='list' title="Favorites" icon="favorite"></mu-bottom-nav-item>
+        <mu-bottom-nav-item to='account' title="Nearby" icon="location_on"></mu-bottom-nav-item>
+      </mu-bottom-nav>
+    </mu-container>
   </section>
 </template>
 <script type="text/babel">
@@ -20,8 +22,6 @@
     name: 'layout',
     data() {
       return {
-        // appdown: true,
-        appdown: false,
         isLogin: Boolean,
         isWeixinPlatform: false || isWeixinPlatform() // 暂时不管微信
       }
@@ -33,26 +33,11 @@
         type: Boolean,
         default: true
       },
-      showTabbar: {
-        type: Boolean,
-        default: false
-      }
     },
     created() {
-      this.isAppdown()
     },
     methods: {
-      isAppdown() {
-        if (sessionStorage.getItem('appdown') === 'false') {
-          this.appdown = false
-        } else if( this.$route.query.os === 'app_ios' || this.$route.query.os === 'app_android') {
-          this.appdown = false
-        }
-      },
-      closeAppdown() {
-        this.appdown = false
-        sessionStorage.setItem("appdown", "false")
-      }
+
     }
   }
 </script>

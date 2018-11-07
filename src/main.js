@@ -16,8 +16,9 @@ import axios from './global/fetch'
 import _ from 'underscore'
 import moment from 'moment'
 import $ from 'jquery'
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
+import MuseUI from 'muse-ui';
+import 'muse-ui/dist/muse-ui.css';
+Vue.use(MuseUI);
 
 window.USER = USER
 window._ = _
@@ -25,16 +26,15 @@ window.moment = moment
 window.$ = $
 
 Vue.use(UI)
-Vue.use(MintUI)
 
 Vue.prototype.axios = axios
 window.AXIOS = axios
 
-Vue.config.productionTip = false
-Vue.config.devtools = false
+Vue.config.productionTip = true
+Vue.config.devtools = true
 
 //全局路由钩子
-let tabPages = ['accountHome', 'product', 'account']
+let tabPages = ['/', '/list', '/account']
 
 function isTabSwitch(to, from) {
   let toName = to.name || ''

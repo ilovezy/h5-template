@@ -1,38 +1,12 @@
 <template>
-  <header v-if='large'
-          class="navbar navbar-large"
-          :class="classes">
-    <div class="navbar-item"
-         @click='goBack'>
-      <img class="back-icon"
-           src='./img/arrow-back-2.png'
-           alt=''>
-    </div>
-    <div class="navbar-center">
-      <slot name="center">{{title}}</slot>
-    </div>
-    <div class="navbar-item navbar-item-right">
-      <slot name="right"></slot>
-    </div>
-  </header>
 
-  <header v-else
-          class="navbar"
-          :class="classes">
-    <div class="navbar-item"
-         v-if='!noBack'
-         @click='goBack'>
-      <img class="back-icon"
-           src='./img/arrow-back-1.png'
-           alt=''>
-    </div>
-    <div class="navbar-center">
-      <slot name="center">{{title}}</slot>
-    </div>
-    <div class="navbar-item navbar-item-right">
-      <slot name="right"></slot>
-    </div>
-  </header>
+  <mu-appbar style="width: 100%;" color="primary">
+    <mu-button icon slot="left">
+      <mu-icon value=":iconfont icon-back" v-if='!noBack' @click='goBack'></mu-icon>
+    </mu-button>
+    {{title}}
+    <mu-button flat slot="right"></mu-button>
+  </mu-appbar>
 </template>
 
 <script type="text/babel">
@@ -45,16 +19,7 @@
         type: Boolean,
         default: false
       },
-      large: {
-        type: Boolean,
-        default: false
-      },
       backLink: String,
-    },
-    computed: {
-      classes() {
-        return this.fixed ? 'navbar-fixed' : '';
-      }
     },
     methods: {
       goBack() {
