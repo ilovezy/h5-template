@@ -287,7 +287,7 @@
     },
     methods: {
       getDetail() {
-        this.axios.post('/auth/bid/contact', {
+        AXIOS.post('/auth/bid/contact', {
           bidId: this.bidId
         }).then(res => {
           this.detail = res

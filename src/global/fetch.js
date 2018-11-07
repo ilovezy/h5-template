@@ -4,6 +4,7 @@
 import axios from 'axios';
 import './CONFIG'
 import USER from '../global/USER'
+import { Toast } from 'mint-ui';
 
 import VConsole from 'vconsole' //import vconsole
 //全局API
@@ -49,7 +50,7 @@ instance.interceptors.response.use(res => {
     return data.result || {}
   } else {
     if (data.errorDescription) {
-      // Toast({mes: data.errorDescription, timeout: ToastTimeout})
+      Toast(data.errorDescription);
     }
     return Promise.reject(data);
   }
@@ -59,24 +60,23 @@ instance.interceptors.response.use(res => {
   if (err.response) {
     let response = err.response || {}
     let data = response.data || {}
-    if (data.status == 404) {
-      // Toast({mes: '404错误，后台没找到', timeout: ToastTimeout})
+    if (data.status == 404) {Toast('404错误，后台没找到');
     } else {
       if (data.error == 'ERROR_ACCESS_NEED_AUTH') {
         // // TODO 调到登录页面去
-        // Toast({mes: '请登录 fuck TODO', timeout: ToastTimeout})
+        Toast('请登录');
         // USER.logout()
         // // setTimeout(() => {
         // //   location.href = '/login';
         // // }, 2000)
         // return Promise.reject()
       } else {
-        // Toast({mes: data.errorDescription, timeout: ToastTimeout})
+        Toast(data.errorDescription)
         return Promise.reject(data);
       }
     }
   } else {
-    // Toast({mes: '登录信息过期，请登录', timeout: ToastTimeout})
+    Toast('登录信息过期，请登录')
     // USER.logout()
     // setTimeout(() => {
     //   location.href = '/#/login'
@@ -86,9 +86,7 @@ instance.interceptors.response.use(res => {
 })
 
 const postRequest = (url, params) => {
-  if (!url) {
-    // Toast({mes: '请求地址为空', timeout: ToastTimeout})
-  } else {
+  if (url) {
     return instance({
       method: 'post',
       url,
@@ -104,6 +102,8 @@ const postRequest = (url, params) => {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
       }
     })
+  } else {
+    Toast('请求地址为空')
   }
 }
 

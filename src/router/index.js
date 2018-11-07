@@ -6,6 +6,13 @@ Vue.use(Router)
 
 let basicRoute = [
   {
+    path: '/',
+    name: 'home',//404错误
+    meta: {
+      title: '首页'
+    },
+    component: resolve => require(['@/views/index.vue'], resolve)
+  },  {
     path: '*',
     name: '404',//404错误
     meta: {
