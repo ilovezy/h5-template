@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import account from './modules/account'
 import list from './modules/list'
+import gridList from './modules/gridList'
 import protocolRoute from './modules/protocol'
 
 Vue.use(Router)
@@ -31,5 +32,6 @@ export default new Router({
     ...protocolRoute,
     ...account,
     ...list,
+    ...gridList,
   ]
 })

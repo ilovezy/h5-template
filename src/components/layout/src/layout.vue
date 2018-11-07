@@ -8,8 +8,8 @@
              ref="scrollView">
       <slot></slot>
     </section>
-    <mu-container v-if='showTabbar'>
-      <mu-bottom-nav :value='currentTab'>
+    <mu-container v-if='showTabbar' style='border-top: 1px solid #eaeaea;'>
+      <mu-bottom-nav value=''>
         <mu-bottom-nav-item
           exact-active-class='mu-bottom-item-active'
           :exact='true'
@@ -31,6 +31,13 @@
           title="account"
           value='account'
           icon="location_on"></mu-bottom-nav-item>
+        <mu-bottom-nav-item
+          exact-active-class='mu-bottom-item-active'
+          :exact='true'
+          to='/gridList'
+          title="gridList"
+          value='gridList'
+          icon="menu"></mu-bottom-nav-item>
       </mu-bottom-nav>
     </mu-container>
   </section>
@@ -40,7 +47,6 @@
     name: 'layout',
     data() {
       return {
-        currentTab: 'home',
         isLogin: Boolean,
         isWeixinPlatform: false || isWeixinPlatform() // 暂时不管微信
       }

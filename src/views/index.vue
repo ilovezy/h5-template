@@ -2,30 +2,86 @@
   <layout :showNavbar="isNavbar"
           :showTabbar='true'
           title='首页'>
-    <mu-container>
-      <mu-flex justify-content="center">
-        <mu-button @click="openAlertDialog">Open Dialog</mu-button>
-        <mu-button @click="getDetail">getDetail</mu-button>
-      </mu-flex>
-      <mu-dialog title="Use Google's location service?"
-                 width="600"
-                 max-width="80%"
-                 :esc-press-close="false"
-                 :overlay-close="false"
-                 :open.sync="openAlert">
-        Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps
-        are running.
-        <mu-button slot="actions"
-                   flat
-                   color="primary"
-                   @click="closeAlertDialog">Disagree
-        </mu-button>
-        <mu-button slot="actions"
-                   flat
-                   color="primary"
-                   @click="closeAlertDialog">Agree
-        </mu-button>
-      </mu-dialog>
+    <mu-container ref="container"
+                  class="demo-loadmore-content">
+
+      <mu-load-more @refresh="refresh"
+                    :refreshing="refreshing"
+                    :loading="loading">
+        <mu-row>
+          <mu-col span="12">
+            <mu-carousel style='height: 200px'>
+              <mu-carousel-item>
+                <img src="./img/carousel1.dc6ba9d4.jpg">
+              </mu-carousel-item>
+              <mu-carousel-item>
+                <img src="./img/carousel1.dc6ba9d4.jpg">
+              </mu-carousel-item>
+              <mu-carousel-item>
+                <img src="./img/carousel1.dc6ba9d4.jpg">
+              </mu-carousel-item>
+            </mu-carousel>
+
+          </mu-col>
+        </mu-row>
+
+        <mu-row>
+          <mu-col span='12'>
+            <mu-tabs :value.sync="active">
+              <mu-tab>TAB ITEM 1</mu-tab>
+              <mu-tab>TAB ITEM 2</mu-tab>
+              <mu-tab>TAB ITEM 3</mu-tab>
+            </mu-tabs>
+            <div class="demo-text"
+                 v-if="active === 0">
+              <p>
+                “……是的，我承认从很早以前我都害怕死亡，在医院里被人研究的时候，以前做出布局的时候，其实我很怕死的，因为除了死以外，我没有值得珍惜的东西，很奇怪是吧？恰好是这样我真的很怕死，因为我想要有值得珍惜的东西之后，死亡之后才会不寂寞，我才能够安然的面对死亡……”</p>
+            </div>
+            <div class="demo-text"
+                 v-if="active === 1">
+              <p>“我的心从来没有这么坚定过，所以我会为了补偿而死，也可以为了补偿而死……一辈子，急辈子都无所谓，我绝不后退！”</p>
+              <p>“如果我后退呢？如果我想要死呢？我不想你再次背对着我逃跑了……”</p>
+              <p>“那么就去地狱找到你，我绝对不逃！”</p>
+              <p>“白痴，你也哭了？因为那些软弱拖累你的脚步？”</p>
+            </div>
+            <div class="demo-text"
+                 v-if="active === 2">
+              <p>“不，这泪水……是因为勇气，因为力量，因为信任，……你不会懂的！”</p>
+              <p>“我不会帮你，想要什么样的未来……自己去追寻吧！”</p>
+              <p>“我不需要你的帮忙！未来我会一手开启，什么样的敌人我也不会惧怕……还有，其实我们可以成为朋友的……”</p>
+              <p>“也许吧，未来……给你了。”</p>
+            </div>
+          </mu-col>
+        </mu-row>
+        <mu-row>
+          <mu-col span='12'>
+            <mu-tabs :value.sync="active">
+              <mu-tab>TAB ITEM 1</mu-tab>
+              <mu-tab>TAB ITEM 2</mu-tab>
+              <mu-tab>TAB ITEM 3</mu-tab>
+            </mu-tabs>
+            <div class="demo-text"
+                 v-if="active === 0">
+              <p>
+                “……是的，我承认从很早以前我都害怕死亡，在医院里被人研究的时候，以前做出布局的时候，其实我很怕死的，因为除了死以外，我没有值得珍惜的东西，很奇怪是吧？恰好是这样我真的很怕死，因为我想要有值得珍惜的东西之后，死亡之后才会不寂寞，我才能够安然的面对死亡……”</p>
+            </div>
+            <div class="demo-text"
+                 v-if="active === 1">
+              <p>“我的心从来没有这么坚定过，所以我会为了补偿而死，也可以为了补偿而死……一辈子，急辈子都无所谓，我绝不后退！”</p>
+              <p>“如果我后退呢？如果我想要死呢？我不想你再次背对着我逃跑了……”</p>
+              <p>“那么就去地狱找到你，我绝对不逃！”</p>
+              <p>“白痴，你也哭了？因为那些软弱拖累你的脚步？”</p>
+            </div>
+            <div class="demo-text"
+                 v-if="active === 2">
+              <p>“不，这泪水……是因为勇气，因为力量，因为信任，……你不会懂的！”</p>
+              <p>“我不会帮你，想要什么样的未来……自己去追寻吧！”</p>
+              <p>“我不需要你的帮忙！未来我会一手开启，什么样的敌人我也不会惧怕……还有，其实我们可以成为朋友的……”</p>
+              <p>“也许吧，未来……给你了。”</p>
+            </div>
+          </mu-col>
+        </mu-row>
+      </mu-load-more>
     </mu-container>
   </layout>
 </template>
@@ -35,14 +91,33 @@
       return {
         isNavbar: true,
         openSimple: false,
-        openAlert: false
+        openAlert: false,
+        active: 0,
 
+        refreshing: false,
+        loading: false,
       }
     },
     created() {
-      this.getDetail()
+      // this.getDetail()
     },
     methods: {
+      refresh() {
+        this.refreshing = true;
+        this.$refs.container.scrollTop = 0;
+        setTimeout(() => {
+          this.refreshing = false;
+          this.text = this.text === 'List' ? 'Menu' : 'List';
+          this.num = 20;
+        }, 2000)
+      },
+      load() {
+        this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+          this.num += 20;
+        }, 2000)
+      },
       openAlertDialog() {
         this.openAlert = true;
       },
