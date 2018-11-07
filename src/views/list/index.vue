@@ -1,7 +1,19 @@
 <template>
   <layout :showNavbar="isNavbar" :showTabbar='true'
           title='列表'>
-    <mu-paper :z-depth="1" class="demo-loadmore-wrap">
+    <mu-carousel style='height: 200px;position: fixed;z-index: 10;'>
+      <mu-carousel-item>
+        <img src="../img/carousel1.dc6ba9d4.jpg">
+      </mu-carousel-item>
+      <mu-carousel-item>
+        <img src="../img/carousel1.dc6ba9d4.jpg">
+      </mu-carousel-item>
+      <mu-carousel-item>
+        <img src="../img/carousel1.dc6ba9d4.jpg">
+      </mu-carousel-item>
+    </mu-carousel>
+
+    <mu-paper :z-depth="1" class="demo-loadmore-wrap" style='margin-top: 200px;'>
       <!--<mu-appbar color="teal">-->
         <!--<mu-button icon slot="left">-->
           <!--<mu-icon value="menu"></mu-icon>-->
