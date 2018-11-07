@@ -19,13 +19,18 @@ import $ from 'jquery'
 import MuseUI from 'muse-ui';
 import 'muse-ui/dist/muse-ui.css';
 Vue.use(MuseUI);
+import 'muse-ui-loading/dist/muse-ui-loading.css'; // load css
+import Loading from 'muse-ui-loading';
+import Toast from 'muse-ui-toast';
+
+Vue.use(Toast);
+Vue.use(Loading);
+Vue.use(UI)
 
 window.USER = USER
 window._ = _
 window.moment = moment
 window.$ = $
-
-Vue.use(UI)
 
 Vue.prototype.axios = axios
 window.AXIOS = axios

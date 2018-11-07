@@ -23,8 +23,11 @@
                        v-model="validateForm.isAgree"></mu-checkbox>
         </mu-form-item>
         <mu-button color="primary"
-                   full-width large
+                   full-width
+                   large
                    style='margin-top: 30px;'
+                   v-loading='loading'
+                   data-mu-loading-size="24"
                    @click="handleLogin">提交
         </mu-button>
       </mu-form>
@@ -33,6 +36,7 @@
   </layout>
 </template>
 <script>
+
   export default {
     data() {
       return {
@@ -51,6 +55,7 @@
           password: '',
           isAgree: false
         },
+        loading: false
       }
     },
     created() {
@@ -62,19 +67,26 @@
         const password = self.validateForm.password
 
         this.$refs.validateForm.validate().then((result) => {
-          self.loading = true
-          AXIOS.post('/security/login/platformUser', {
-            userName: loginName,
-            password: password,
-            postType: 'old'
-          }).then(res => {
-            USER.setToken(res.bearerToken)
-            USER.setLoginName(loginName)
-            self.$router.push({path: '/'})
-          }).catch(() => {
-            self.loading = false
-          })
-        });
+          if (result) {
+            USER.logout()
+            self.loading = true
+            AXIOS.post('/security/login/platformUser', {
+              userName: loginName,
+              password: password,
+              postType: 'old'
+            }).then(res => {
+              self.$toast.success('登录成功')
+              setTimeout(() => {
+                USER.setToken(res.bearerToken)
+                USER.setLoginName(loginName)
+                self.$router.replace({path: '/'})
+              }, 2000)
+
+            }).catch(() => {
+              self.loading = false
+            })
+          }
+        })
       },
     }
   }
