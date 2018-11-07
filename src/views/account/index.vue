@@ -1,5 +1,5 @@
 <template>
-  <layout :showNavbar="isNavbar"
+  <layout :showNavbar="isNavbar" :showTabbar='true'
           title='个人中心'>
     <mu-container>
      个人中心

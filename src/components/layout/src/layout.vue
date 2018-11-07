@@ -1,18 +1,36 @@
 <template>
   <section class="flexview">
-    <slot name="navbar" v-if="showNavbar">
+    <slot name="navbar"
+          v-if="showNavbar">
       <navbar :title="title"/>
     </slot>
-    <section class="scrollview" ref="scrollView">
+    <section class="scrollview"
+             ref="scrollView">
       <slot></slot>
     </section>
-    <slot name="bottom"></slot>
-
-    <mu-container >
-      <mu-bottom-nav>
-        <mu-bottom-nav-item to='/' title="Recents" icon="restore"></mu-bottom-nav-item>
-        <mu-bottom-nav-item to='list' title="Favorites" icon="favorite"></mu-bottom-nav-item>
-        <mu-bottom-nav-item to='account' title="Nearby" icon="location_on"></mu-bottom-nav-item>
+    <mu-container v-if='showTabbar'>
+      <mu-bottom-nav :value='currentTab'>
+        <mu-bottom-nav-item
+          exact-active-class='mu-bottom-item-active'
+          :exact='true'
+          to='/'
+          title="home"
+          value='home'
+          icon="restore"></mu-bottom-nav-item>
+        <mu-bottom-nav-item
+          exact-active-class='mu-bottom-item-active'
+          :exact='true'
+          to='/list'
+          title="list"
+          value='list'
+          icon="favorite"></mu-bottom-nav-item>
+        <mu-bottom-nav-item
+          exact-active-class='mu-bottom-item-active'
+          :exact='true'
+          to='/account'
+          title="account"
+          value='account'
+          icon="location_on"></mu-bottom-nav-item>
       </mu-bottom-nav>
     </mu-container>
   </section>
@@ -22,6 +40,7 @@
     name: 'layout',
     data() {
       return {
+        currentTab: 'home',
         isLogin: Boolean,
         isWeixinPlatform: false || isWeixinPlatform() // 暂时不管微信
       }
@@ -33,12 +52,17 @@
         type: Boolean,
         default: true
       },
+      showTabbar: {
+        type: Boolean,
+        default: false
+      },
     },
     created() {
     },
-    methods: {
-
-    }
+    mounted() {
+      console.log('a')
+    },
+    methods: {}
   }
 </script>
 <style lang="less">

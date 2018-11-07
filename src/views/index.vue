@@ -1,5 +1,6 @@
 <template>
   <layout :showNavbar="isNavbar"
+          :showTabbar='true'
           title='首页'>
     <mu-container>
       <mu-flex justify-content="center">

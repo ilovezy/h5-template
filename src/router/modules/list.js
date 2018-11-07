@@ -1,7 +1,7 @@
 let list = [
   {
     path: '/list',
-    name: '列表页面',// 协议
+    name: 'list',// 协议
     meta: {
       title: '列表页面',
       // requireAuth: true

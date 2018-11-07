@@ -34,7 +34,7 @@ Vue.config.productionTip = true
 Vue.config.devtools = true
 
 //全局路由钩子
-let tabPages = ['/', '/list', '/account']
+let tabPages = ['home', 'list', 'account']
 
 function isTabSwitch(to, from) {
   let toName = to.name || ''

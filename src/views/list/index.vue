@@ -1,5 +1,5 @@
 <template>
-  <layout :showNavbar="isNavbar"
+  <layout :showNavbar="isNavbar" :showTabbar='true'
           title='列表'>
     <mu-container>
       列表
